@@ -11,9 +11,9 @@ from torchvision import datasets, transforms
 from torch.utils.data.dataset import Dataset   
 torch.backends.cudnn.benchmark = True
 
-num_clients = 5000
+num_clients = 1000
 num_selected = 10
-num_rounds = 100
+num_rounds = 5000
 epochs = 5
 batch_size = 32
 
@@ -187,3 +187,6 @@ plt.ylabel('Accuracy')
 plt.title('Test Accuracy')
 
 plt.show()
+
+np.save('MNIST_1000C_5000R_5E_acc',acc_test)
+np.save('MNIST_1000C_5000R_5E_Loss',loss_train)

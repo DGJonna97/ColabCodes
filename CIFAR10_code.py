@@ -3,7 +3,6 @@ import random
 from tqdm import tqdm
 import numpy as np
 import matplotlib.pyplot as plt
-from torch.utils.tensorboard import SummaryWriter
 import torch, torchvision
 import torch.nn as nn
 import torch.nn.functional as F
@@ -14,7 +13,7 @@ torch.backends.cudnn.benchmark = True
 
 num_clients = 1000
 num_selected = 10
-num_rounds = 10
+num_rounds = 500
 epochs = 1
 batch_size = 32
 
@@ -168,7 +167,7 @@ for r in range(num_rounds):
     print('average train loss %0.3g | test loss %0.3g | test acc: %0.3f' % (train_loss, test_loss, acc))
 
 # Loss    
-plt.plot(loss_train, '-o')
+plt.plot(loss_train, '-')
 plt.xlabel('Rounds')
 plt.ylabel('losses')
 plt.legend(['Train'])
@@ -177,15 +176,12 @@ plt.title('Train Loss')
 plt.show()
 
 # Accuracy
-plt.plot(acc_test, '-o')
+plt.plot(acc_test, '-')
 plt.xlabel('Rounds')
 plt.ylabel('Accuracy')
 plt.title('Test Accuracy')
 
 plt.show()
 
-from google.colab import drive
-drive.mount("/content/gdrive")
-
-np.save('/content/gdrive/My Drive/Object Detection/acc',acc_test)
-np.save('/content/gdrive/My Drive/Object Detection/loss',loss_train)
+np.save('CIFAR10_1000C_500R_1E_acc',acc_test)
+np.save('CIFAR10_1000C_500R_1E_Loss',loss_train)

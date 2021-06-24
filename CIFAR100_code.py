@@ -11,9 +11,9 @@ from torchvision import datasets, transforms
 from torch.utils.data.dataset import Dataset   
 torch.backends.cudnn.benchmark = True
 
-num_clients = 20
+num_clients = 1000
 num_selected = 10
-num_rounds = 10
+num_rounds = 2000
 epochs = 1
 batch_size = 32
 
@@ -165,7 +165,7 @@ for r in range(num_rounds):
     print('average train loss %0.3g | test loss %0.3g | test acc: %0.3f' % (train_loss, test_loss, acc))
 
 # Loss    
-plt.plot(loss_train, '-o')
+plt.plot(loss_train)
 plt.xlabel('Rounds')
 plt.ylabel('losses')
 plt.legend(['Train'])
@@ -174,12 +174,12 @@ plt.title('Train Loss')
 plt.show()
 
 # Accuracy
-plt.plot(acc_test, '-o')
+plt.plot(acc_test)
 plt.xlabel('Rounds')
 plt.ylabel('Accuracy')
 plt.title('Test Accuracy')
 
 plt.show()
 
-#np.save('acc',acc_test)
-#np.save('loss',loss_train)
+np.save('CIFAR100_1000C_2000R_1E_acc',acc_test)
+np.save('CIFAR100_1000C_2000R_1E_Loss',loss_train)
